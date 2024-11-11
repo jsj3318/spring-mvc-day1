@@ -6,6 +6,7 @@ import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import jakarta.websocket.Session;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -24,12 +25,12 @@ public class StudentLoginController {
 
     @GetMapping
     public String login(
-            @CookieValue(value = "SESSION", required = false) String session,
+            @CookieValue(value = "SESSION", required = false) String sessionId,
                         Model model
     ) {
-        if (StringUtils.hasText(session)) {
-            model.addAttribute("id", session);
-            return "loginSuccess";
+        if (StringUtils.hasText(sessionId)) {
+            model.addAttribute("id", sessionId);
+            return "redirect:/student/"+sessionId;
         } else {
             return "loginForm";
         }
@@ -44,7 +45,7 @@ public class StudentLoginController {
         if (studentRepository.matches(id, pwd)) {
             HttpSession session = request.getSession(true);
 
-            Cookie cookie = new Cookie("SESSION", session.getId());
+            Cookie cookie = new Cookie("SESSION", id);
             response.addCookie(cookie);
 
             modelMap.put("student",
