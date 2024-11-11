@@ -35,11 +35,16 @@ public class StudentController {
             Model model,
             @RequestParam("hideScore") String hide
     ) {
+        Student student = (Student) model.getAttribute("student");
+
         if(hide.equals("yes")){
             // 점수, 평가 정보를 숨긴다
-            Student student = (Student) model.getAttribute("student");
             model.addAttribute("student",
                     Student.constructMoreMaskedStudent(student));
+        } else {
+            // 비번만 숨긴다
+            model.addAttribute("student",
+                    Student.constructPasswordMaskedStudent(student));
         }
         return "studentView";
     }
@@ -50,7 +55,7 @@ public class StudentController {
     }
 
     @PostMapping("/{studentId}/modify")
-    public String modifyUser() {
+    public String modifyModify() {
         return "studentView";
     }
 
