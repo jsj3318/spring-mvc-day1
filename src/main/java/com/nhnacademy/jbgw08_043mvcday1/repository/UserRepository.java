@@ -1,6 +1,6 @@
 package com.nhnacademy.jbgw08_043mvcday1.repository;
 
-import com.nhnacademy.springbootmvc.domain.User;
+import com.nhnacademy.jbgw08_043mvcday1.domain.User;
 
 import java.util.List;
 

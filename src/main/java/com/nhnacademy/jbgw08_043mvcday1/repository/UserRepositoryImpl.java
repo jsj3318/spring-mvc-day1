@@ -1,7 +1,7 @@
 package com.nhnacademy.jbgw08_043mvcday1.repository;
 
-import com.nhnacademy.springbootmvc.domain.User;
-import com.nhnacademy.springbootmvc.exception.UserAlreadyExistsException;
+import com.nhnacademy.jbgw08_043mvcday1.domain.User;
+import com.nhnacademy.jbgw08_043mvcday1.exception.UserAlreadyExistsException;
 import org.springframework.stereotype.Repository;
 
 import java.util.HashMap;

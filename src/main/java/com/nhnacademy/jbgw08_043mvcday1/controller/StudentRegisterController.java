@@ -1,6 +1,6 @@
 package com.nhnacademy.jbgw08_043mvcday1.controller;
 
-import com.nhnacademy.springbootmvc.repository.StudentRepository;
+import com.nhnacademy.jbgw08_043mvcday1.repository.StudentRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;

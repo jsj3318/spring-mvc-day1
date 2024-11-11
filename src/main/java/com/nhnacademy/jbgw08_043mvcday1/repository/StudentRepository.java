@@ -4,10 +4,10 @@ package com.nhnacademy.jbgw08_043mvcday1.repository;
 import com.nhnacademy.jbgw08_043mvcday1.domain.Student;
 
 public interface StudentRepository {
-    boolean exists(long id);
+    boolean exists(String id);
 
     Student register(String name, String email, int score, String comment);
 
-    Student getStudent(long id);
+    Student getStudent(String id);
 
 }

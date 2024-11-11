@@ -1,6 +1,5 @@
 package com.nhnacademy.jbgw08_043mvcday1.domain;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -29,8 +28,7 @@ public class Student {
 
     private static final String MASK = "******";
 
-    public static Student constructPasswordMaskedUser(Student student) {
-
+    public static Student constructPasswordMaskedStudent(Student student) {
         return create(
                 student.id,
                 MASK,
@@ -39,7 +37,17 @@ public class Student {
                 student.score,
                 student.comment
         );
+    }
 
+    public static Student constructMoreMaskedStudent(Student student) {
+        return create(
+                student.id,
+                MASK,
+                student.name,
+                student.email,
+                -1,
+                MASK
+        );
     }
 
 

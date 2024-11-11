@@ -1,7 +1,7 @@
 package com.nhnacademy.jbgw08_043mvcday1.controller;
 
-import com.nhnacademy.springbootmvc.domain.User;
-import com.nhnacademy.springbootmvc.repository.UserRepository;
+import com.nhnacademy.jbgw08_043mvcday1.domain.User;
+import com.nhnacademy.jbgw08_043mvcday1.repository.UserRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
