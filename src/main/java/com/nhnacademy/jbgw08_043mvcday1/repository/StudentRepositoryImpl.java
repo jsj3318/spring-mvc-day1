@@ -3,25 +3,46 @@ package com.nhnacademy.jbgw08_043mvcday1.repository;
 import com.nhnacademy.jbgw08_043mvcday1.domain.Student;
 import org.springframework.stereotype.Repository;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Optional;
+
 @Repository
 public class StudentRepositoryImpl implements StudentRepository {
+    private final Map<String, Student> studentMap = new HashMap<>();
+
+    public StudentRepositoryImpl(){
+        studentMap.put("marco", Student.create(
+                "marco",
+                "4444",
+                "마르코",
+                "marco@dooray",
+                100,
+                "great"
+        ));
+    }
+
     @Override
     public boolean exists(String id) {
-        return false;
+        return studentMap.containsKey(id);
     }
 
     @Override
     public boolean matches(String id, String password) {
-        return false;
+        return Optional.ofNullable(getStudent(id))
+                .map(student -> student.getPassword().equals(password))
+                .orElse(false);
     }
 
     @Override
     public Student register(String id, String password, String name, String email, int score, String comment) {
-        return null;
+        Student student = Student.create(id, password, name, email, score, comment);
+        studentMap.put(id, student);
+        return student;
     }
 
     @Override
     public Student getStudent(String id) {
-        return null;
+        return studentMap.get(id);
     }
 }
