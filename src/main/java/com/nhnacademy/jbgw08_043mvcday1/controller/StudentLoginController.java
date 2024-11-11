@@ -45,11 +45,9 @@ public class StudentLoginController {
             HttpSession session = request.getSession(true);
 
             Cookie cookie = new Cookie("SESSION", session.getId());
-            cookie.setMaxAge(-1);
             response.addCookie(cookie);
 
             modelMap.put("id", id);
-            session.setAttribute("studentId", id);
             return "loginSuccess";
         } else {
             return "redirect:/login";
