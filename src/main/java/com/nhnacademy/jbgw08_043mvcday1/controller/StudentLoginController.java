@@ -1,29 +1,32 @@
 package com.nhnacademy.jbgw08_043mvcday1.controller;
 
-import com.nhnacademy.springbootmvc.repository.UserRepository;
+import com.nhnacademy.jbgw08_043mvcday1.repository.StudentRepository;
+import com.nhnacademy.jbgw08_043mvcday1.repository.StudentRepositoryImpl;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.CookieValue;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
-public class LoginController {
-    private final UserRepository userRepository;
+@Controller
+@RequestMapping("/login")
+public class StudentLoginController {
 
-    public LoginController(UserRepository userRepository) {
-        this.userRepository = userRepository;
+    private final StudentRepository studentRepository;
+
+    public StudentLoginController(StudentRepository studentRepository) {
+        this.studentRepository = studentRepository;
     }
 
-
-    @GetMapping("/login")
-    public String login(@CookieValue(value = "SESSION", required = false) String session,
-                        Model model) {
+    @GetMapping
+    public String login(
+            @CookieValue(value = "SESSION", required = false) String session,
+                        Model model
+    ) {
         if (StringUtils.hasText(session)) {
             model.addAttribute("id", session);
             return "loginSuccess";
@@ -32,7 +35,7 @@ public class LoginController {
         }
     }
 
-    @PostMapping("/login")
+    @PostMapping
     public String doLogin(@RequestParam("id") String id,
                           @RequestParam("pwd") String pwd,
                           HttpServletRequest request,
@@ -50,5 +53,6 @@ public class LoginController {
             return "redirect:/login";
         }
     }
+
 
 }

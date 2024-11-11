@@ -1,6 +1,7 @@
 package com.nhnacademy.jbgw08_043mvcday1.repository;
 
-import com.nhnacademy.springbootmvc.domain.Student;
+
+import com.nhnacademy.jbgw08_043mvcday1.domain.Student;
 
 public interface StudentRepository {
     boolean exists(long id);
