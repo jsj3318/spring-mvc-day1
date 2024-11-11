@@ -5,11 +5,14 @@
     <title>사용자 등록</title>
 </head>
 <body>
-    <form method="post" action="/user/register">
-        아이디: <input type="text" name="id" /><br />
-        비밀번호: <input type="password" name="password" /><br />
-        나이: <input type="text" name="age" /><br />
+    <form method="post" action="/student/register">
+        아이디:    <input type="text" name="id" /><br />
+        비밀번호:  <input type="password" name="password" /><br />
+        이름:     <input type="text" name="name"  /><br />
+        이메일:    <input type="text" name="email"  /><br />
+        성적:     <input type="number" name="score"  /><br />
+        평가:     <textarea name="comment" rows="4" cols="50" ></textarea><br />
         <input type="submit" />
-</form>
+    </form>
 </body>
 </html>

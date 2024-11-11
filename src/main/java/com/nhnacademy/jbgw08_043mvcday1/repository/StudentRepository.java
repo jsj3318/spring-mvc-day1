@@ -12,4 +12,5 @@ public interface StudentRepository {
 
     Student getStudent(String id);
 
+    void update(Student student);
 }

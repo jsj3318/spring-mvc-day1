@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>사용자 등록</title>
+</head>
+<body>
+    <form method="post" action="/student/${student.id}/modify">
+        아이디:    <input type="text" name="id" th:value="${student.id}" readonly/><br />
+        비밀번호:  <input type="password" name="password" th:value="${student.password}"/><br />
+        이름:     <input type="text" name="name" th:value="${student.name}" /><br />
+        이메일:    <input type="text" name="email" th:value="${student.email}" /><br />
+        성적:     <input type="number" name="score" th:value="${student.score}" /><br />
+        평가:     <textarea name="comment" rows="4" cols="50" th:text="${student.comment}"></textarea><br />
+        <input type="submit" />
+    </form>
+</body>
+</html>

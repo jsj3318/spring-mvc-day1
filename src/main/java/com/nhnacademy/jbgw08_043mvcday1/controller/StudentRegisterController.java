@@ -37,9 +37,9 @@ public class StudentRegisterController {
                 request.getComment()
         );
         ModelAndView mav = new ModelAndView("studentView");
-        mav.addObject("student", student);
+        mav.addObject("student", Student.constructPasswordMaskedStudent(student));
 
-        return null;
+        return mav;
     }
 
 }

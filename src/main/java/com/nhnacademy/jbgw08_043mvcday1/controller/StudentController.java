@@ -1,6 +1,7 @@
 package com.nhnacademy.jbgw08_043mvcday1.controller;
 
 import com.nhnacademy.jbgw08_043mvcday1.domain.Student;
+import com.nhnacademy.jbgw08_043mvcday1.domain.StudentRegisterRequest;
 import com.nhnacademy.jbgw08_043mvcday1.repository.StudentRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -74,7 +75,20 @@ public class StudentController {
     }
 
     @PostMapping("/{studentId}/modify")
-    public String modifyModify() {
+    public String modifyModify(
+            @ModelAttribute StudentRegisterRequest request,
+            Model model
+    ) {
+        Student student = Student.create(
+                        request.getId(),
+                        request.getPassword(),
+                        request.getName(),
+                        request.getEmail(),
+                        request.getScore(),
+                        request.getComment()
+        );
+        studentRepository.update(student);
+        model.addAttribute("student", Student.constructPasswordMaskedStudent(student));
         return "studentView";
     }
 

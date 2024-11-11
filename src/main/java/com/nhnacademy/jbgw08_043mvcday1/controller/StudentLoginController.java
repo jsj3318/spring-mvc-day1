@@ -1,7 +1,7 @@
 package com.nhnacademy.jbgw08_043mvcday1.controller;
 
+import com.nhnacademy.jbgw08_043mvcday1.domain.Student;
 import com.nhnacademy.jbgw08_043mvcday1.repository.StudentRepository;
-import com.nhnacademy.jbgw08_043mvcday1.repository.StudentRepositoryImpl;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -13,7 +13,7 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-@RequestMapping("/login")
+@RequestMapping("/student/login")
 public class StudentLoginController {
 
     private final StudentRepository studentRepository;
@@ -47,10 +47,11 @@ public class StudentLoginController {
             Cookie cookie = new Cookie("SESSION", session.getId());
             response.addCookie(cookie);
 
-            modelMap.put("id", id);
-            return "loginSuccess";
+            modelMap.put("student",
+                    Student.constructPasswordMaskedStudent(studentRepository.getStudent(id)));
+            return "studentView";
         } else {
-            return "redirect:/login";
+            return "redirect:/student/login";
         }
     }
 
