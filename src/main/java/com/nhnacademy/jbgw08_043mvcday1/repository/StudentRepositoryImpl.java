@@ -6,17 +6,22 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class StudentRepositoryImpl implements StudentRepository {
     @Override
-    public boolean exists(long id) {
+    public boolean exists(String id) {
         return false;
     }
 
     @Override
-    public Student register(String name, String email, int score, String comment) {
+    public boolean matches(String id, String password) {
+        return false;
+    }
+
+    @Override
+    public Student register(String id, String password, String name, String email, int score, String comment) {
         return null;
     }
 
     @Override
-    public Student getStudent(long id) {
+    public Student getStudent(String id) {
         return null;
     }
 }
