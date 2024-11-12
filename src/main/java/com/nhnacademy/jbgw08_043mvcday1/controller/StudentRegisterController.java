@@ -2,8 +2,11 @@ package com.nhnacademy.jbgw08_043mvcday1.controller;
 
 import com.nhnacademy.jbgw08_043mvcday1.domain.Student;
 import com.nhnacademy.jbgw08_043mvcday1.domain.StudentRegisterRequest;
+import com.nhnacademy.jbgw08_043mvcday1.exception.ValidationFailedException;
 import com.nhnacademy.jbgw08_043mvcday1.repository.StudentRepository;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -26,8 +29,14 @@ public class StudentRegisterController {
 
     @PostMapping
     public ModelAndView registerStudent(
-            @ModelAttribute StudentRegisterRequest request
+            @Validated @ModelAttribute StudentRegisterRequest request,
+            BindingResult bindingResult
             ) {
+        // 입력값 검사
+        if(bindingResult.hasErrors()) {
+            throw new ValidationFailedException(bindingResult);
+        }
+
         Student student = studentRepository.register(
                 request.getId(),
                 request.getPassword(),
