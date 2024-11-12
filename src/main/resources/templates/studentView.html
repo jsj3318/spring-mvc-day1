@@ -5,14 +5,19 @@
     <title>Student Info</title>
 </head>
 <body>
-    아이디: <span th:text="${student.id}"></span><br>
-    비밀번호: <span th:text="${student.password}"></span><br>
-    이름: <span th:text="${student.name}"></span><br>
-    이메일: <span th:text="${student.email}"></span><br>
-    성적: <span th:text="${student.score >= 0 ? student.score : '???'}"></span><br>
-    평가: <span th:text="${student.comment}"></span><br>
+    <span th:text="#{view_id}" />: <span th:text="${student.id}"></span><br>
+    <span th:text="#{view_pwd}" />: <span th:text="${student.password}"></span><br>
+    <span th:text="#{view_name}" />: <span th:text="${student.name}"></span><br>
+    <span th:text="#{view_email}" />: <span th:text="${student.email}"></span><br>
+    <span th:text="#{view_score}" />: <span th:text="${student.score >= 0 ? student.score : '???'}"></span><br>
+    <span th:text="#{view_comment}" />: <span th:text="${student.comment}"></span><br>
 
-    <a th:href="@{/student/{studentId}/modify(studentId=${student.id})}">정보 수정</a>
+    <a th:href="@{/student/{studentId}/modify(studentId=${student.id})}" th:text="#{view_modify}" />
+
+    <br/>
+    <br/>
+    <a href="?locale=ko">ko</a><br />
+    <a href="?locale=en">en</a><br />
 
 </body>
 </html>

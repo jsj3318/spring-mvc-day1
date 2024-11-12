@@ -6,10 +6,15 @@
 </head>
 <body>
     <form method="post" action="/student/login">
-        ID: <input type="text" name="id"/><br/>
-        PWD: <input type="password" name="pwd"/><br/>
+        <span th:text="#{login_id}"/>: <input type="text" name="id"/><br/>
+        <span th:text="#{login_pwd}"/>: <input type="password" name="pwd"/><br/>
         <br/>
         <input type="submit"/>
     </form>
+
+    <br/>
+    <a href="?locale=ko">ko</a><br />
+    <a href="?locale=en">en</a><br />
+
 </body>
 </html>
