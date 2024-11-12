@@ -2,8 +2,10 @@ package com.nhnacademy.jbgw08_043mvcday1.controller;
 
 import com.nhnacademy.jbgw08_043mvcday1.domain.Student;
 import com.nhnacademy.jbgw08_043mvcday1.domain.StudentRegisterRequest;
+import com.nhnacademy.jbgw08_043mvcday1.exception.StudentNotFoundException;
 import com.nhnacademy.jbgw08_043mvcday1.exception.ValidationFailedException;
 import com.nhnacademy.jbgw08_043mvcday1.repository.StudentRepository;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -21,7 +23,18 @@ public class StudentController {
 
     @ModelAttribute("student")
     public Student getStudent(@PathVariable("studentId") String studentId){
-        return studentRepository.getStudent(studentId);
+        Student student = studentRepository.getStudent(studentId);
+        if(student == null){
+            throw new StudentNotFoundException();
+        }
+        return student;
+    }
+
+    @ExceptionHandler(StudentNotFoundException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public String notFound(Model model){
+        model.addAttribute("exception", "Student not found");
+        return "error";
     }
 
     // 일반적인 정보 출력
