@@ -5,7 +5,7 @@
     <title>사용자 수정</title>
 </head>
 <body>
-    <form method="post" action="/student/${student.id}/modify">
+    <form method="post" th:action="@{/student/{studentId}/modify(studentId=${student.id})}">
         <span th:text="#{view_id}" />:    <input type="text" name="id" th:value="${student.id}" readonly/><br />
         <span th:text="#{view_pwd}" />:  <input type="password" name="password" th:value="${student.password}"/><br />
         <span th:text="#{view_name}" />:     <input type="text" name="name" th:value="${student.name}" /><br />
