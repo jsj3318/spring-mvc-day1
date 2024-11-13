@@ -74,7 +74,7 @@ public class StudentController {
     }
 
     @PostMapping("/{studentId}/modify")
-    public String modifyModify(
+    public String studentModify(
             Model model,
             @Validated @ModelAttribute StudentRegisterRequest request,
             BindingResult bindingResult
@@ -95,6 +95,7 @@ public class StudentController {
         studentRepository.update(student);
         model.addAttribute("student", Student.constructPasswordMaskedStudent(student));
         return "studentView";
+
     }
 
 }

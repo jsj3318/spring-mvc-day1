@@ -28,4 +28,15 @@ class StudentLogoutControllerTest {
                 .andExpect(redirectedUrl("/student/login"));
     }
 
+    @Test
+    void doLogout_noSession() throws Exception {
+        mockMvc.perform(post("/student/logout")
+//                        .sessionAttr("SESSION", "marco")
+                        .cookie(new Cookie("SESSION", "marco")))
+                .andExpect(status().is3xxRedirection())
+                .andExpect(cookie().value("SESSION", ""))
+                .andExpect(cookie().maxAge("SESSION", 0))
+                .andExpect(redirectedUrl("/student/login"));
+    }
+
 }
