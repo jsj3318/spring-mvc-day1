@@ -14,6 +14,15 @@
 
     <a th:href="@{/student/{studentId}/modify(studentId=${student.id})}" th:text="#{view_modify}" />
 
+    <br />
+    <form action="/student/logout" method="post">
+        <button
+                type="submit"
+                style="background: none; border: none; color: blue; text-decoration: underline; cursor: pointer;"
+                th:text="#{logout}"
+        />
+    </form>
+
     <br/>
     <br/>
     <a href="?locale=ko">ko</a><br />
