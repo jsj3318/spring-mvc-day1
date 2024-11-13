@@ -92,10 +92,8 @@ class StudentControllerTest {
                         .param("email", "marco@nhn.com")
                         .param("score", "100")
                         .param("comment", "god"))
-                .andExpect(status().isOk())
-                .andExpect(view().name("studentView"))
-                .andExpect(model().attributeExists("student"))
-                .andExpect(model().attribute("student", hasProperty("name", is("마르코"))));
+                .andExpect(status().is3xxRedirection())
+                .andExpect(redirectedUrl("/student/marco"));
     }
 
     @Test

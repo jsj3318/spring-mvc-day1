@@ -93,8 +93,7 @@ public class StudentController {
                         request.getComment()
         );
         studentRepository.update(student);
-        model.addAttribute("student", Student.constructPasswordMaskedStudent(student));
-        return "studentView";
+        return "redirect:/student/"+student.getId();
 
     }
 
