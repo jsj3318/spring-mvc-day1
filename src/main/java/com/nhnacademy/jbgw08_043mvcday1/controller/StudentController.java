@@ -39,13 +39,7 @@ public class StudentController {
 
     // 일반적인 정보 출력
     @GetMapping(value = "/{studentId}", params = {"!hideScore"})
-    public String viewStudent(
-            @CookieValue(value = "SESSION", required = false) String session,
-            Model model ) {
-        if(session == null){
-            return "loginForm";
-        }
-
+    public String viewStudent( Model model ) {
         Student student = (Student) model.getAttribute("student");
         model.addAttribute("student",
                 Student.constructPasswordMaskedStudent(student));
@@ -55,14 +49,9 @@ public class StudentController {
     // 점수, 평가 항목을 가리고 정보 출력
     @GetMapping(value = "/{studentId}", params = {"hideScore"})
     public String viewStudent(
-            @CookieValue(value = "SESSION", required = false) String session,
             Model model,
             @RequestParam("hideScore") String hide
     ) {
-        if(session == null){
-            return "loginForm";
-        }
-
 
         Student student = (Student) model.getAttribute("student");
 
@@ -79,13 +68,7 @@ public class StudentController {
     }
 
     @GetMapping("/{studentId}/modify")
-    public String studentModifyForm(
-            @CookieValue(value = "SESSION", required = false) String session
-    ) {
-        if(session == null){
-            return "loginForm";
-        }
-
+    public String studentModifyForm() {
 
         return "studentModify";
     }
